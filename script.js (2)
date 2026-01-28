@@ -1,0 +1,69 @@
+function cekUUITE() {
+  let nama = document.getElementById("nama").value.trim();
+  let teks = document.getElementById("teks").value.toLowerCase().trim();
+  let hasil = document.getElementById("hasil");
+
+  if (nama === "" || teks === "") {
+    hasil.innerHTML = "⚠️ Silakan masukkan nama dan teks.";
+    return;
+  }
+
+  // Daftar pelanggaran UU ITE
+  let uuITE = [
+    {
+      kataKunci: ["video syur", "konten negatif", "porno"],
+      pasal: "Pasal 27 ayat 1 & 2",
+      hukuman: "6 tahun penjara / denda 1 M",
+      himbauan: "Segera hapus konten, jangan sebarkan, dan lapor pihak berwenang."
+    },
+    {
+      kataKunci: ["hoaks", "fitnah", "berita palsu"],
+      pasal: "Pasal 28 ayat 1",
+      hukuman: "4 tahun penjara / denda 750 juta",
+      himbauan: "Hentikan penyebaran berita palsu, klarifikasi informasi yang salah, dan lapor pihak berwenang jika merugikan orang lain."
+    },
+    {
+      kataKunci: ["bully", "bullying", "ancaman", "mengancam"],
+      pasal: "Pasal 29",
+      hukuman: "3 tahun penjara",
+      himbauan: "Hentikan perilaku bully, minta maaf pada korban, dan jangan ulangi. Lapor ke pihak berwenang jika perlu."
+    },
+    {
+      kataKunci: ["ujaran kebencian", "fitnah politik"],
+      pasal: "Pasal 28 ayat 2",
+      hukuman: "6 tahun penjara / denda 1 M",
+      himbauan: "Hentikan penyebaran ujaran kebencian, klarifikasi informasi yang salah, dan lapor pihak berwenang."
+    }
+  ];
+
+  let pelanggaranTerdeteksi = [];
+
+  // Cek setiap pelanggaran
+  uuITE.forEach(pelanggaran => {
+    pelanggaran.kataKunci.forEach(kata => {
+      if (teks.includes(kata) && !pelanggaranTerdeteksi.includes(pelanggaran)) {
+        pelanggaranTerdeteksi.push(pelanggaran);
+      }
+    });
+  });
+
+  // Tampilkan hasil
+  if (pelanggaranTerdeteksi.length === 0) {
+    hasil.innerHTML = `✅ Tidak terdeteksi pelanggaran UU ITE untuk ${nama}.`;
+  } else {
+    let output = `⚠️ Terdeteksi pelanggaran UU ITE untuk ${nama}:<br><br>`;
+    pelanggaranTerdeteksi.forEach(p => {
+      output += `Pasal: ${p.pasal}<br>`;
+      output += `Hukuman: ${p.hukuman}<br>`;
+      output += `Himbauan: ${p.himbauan}<br><br>`;
+    });
+    hasil.innerHTML = output;
+  }
+}
+
+// Reset
+function resetText() {
+  document.getElementById("nama").value = "";
+  document.getElementById("teks").value = "";
+  document.getElementById("hasil").innerHTML = "";
+}

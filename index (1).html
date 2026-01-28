@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>CekHoaksEdu - UU ITE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <h1>UU ITE Detector</h1>
+<p>Deteksi pelanggaran UU ITE berdasarkan kata kunci</p>
+
+  <label for="nama">Nama orang:</label>
+  <input type="text" id="nama" placeholder="Masukkan nama...">
+  <br><br>
+
+  <label for="teks">Masukkan tindakan / berita:</label>
+  <textarea id="teks" placeholder="Contoh: Irene menyebarkan video syur ke publik"></textarea>
+  <br>
+  <button onclick="cekUUITE()">Cek</button>
+  <button onclick="resetText()">Reset</button>
+
+  <p id="hasil"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
